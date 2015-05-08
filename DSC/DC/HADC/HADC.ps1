@@ -75,5 +75,5 @@ configuration HADC
 $config = Invoke-Expression (Get-content $PSScriptRoot\HADCconfiguration.psd1 -Raw)
 HADC -configurationData $config
 
-Start-DscConfiguration -Wait -Force -Verbose -ComputerName "DC01" -Path $PSScriptRoot\AssertHADC -Credential $localcred
-Start-DscConfiguration -Wait -Force -Verbose -ComputerName "DC01" -Path $PSScriptRoot\AssertHADC -Credential $localcred
+Start-DscConfiguration -Wait -Force -Verbose -ComputerName "DC01" -Path $PSScriptRoot\HADC -Credential $localcred
+Start-DscConfiguration -Wait -Force -Verbose -ComputerName "DC02" -Path $PSScriptRoot\HADC -Credential $localcred

@@ -1,7 +1,7 @@
 # A configuration to Create High Availability Domain Controller 
 
 $passwd = Read-Host -AsSecureString
-$domainCred = New-Object System.Management.Automation.PSCredential ("scloudpuzzles\Administrator", $passwd)
+$domainCred = New-Object System.Management.Automation.PSCredential ("cloudpuzzles\Administrator", $passwd)
 $localUser = New-Object System.Management.Automation.PSCredential ("Administrator", $passwd)
 
 configuration HADC

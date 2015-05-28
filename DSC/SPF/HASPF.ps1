@@ -220,6 +220,12 @@ $ConfigurationData = @{
             AdminAccount = "SOLVOITTEST\Administrator"
         }
         @{
+            NodeName = "SPF1.domain.com"
+            Roles = @(
+                "System Center 2012 R2 Service Provider Foundation Server"
+            )
+        }
+        @{
             NodeName = "SPF2.domain.com"
             Roles = @(
                 "System Center 2012 R2 Service Provider Foundation Server"

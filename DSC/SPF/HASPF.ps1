@@ -235,6 +235,4 @@ $ConfigurationData = @{
 }
 
 SPF -ConfigurationData $ConfigurationData
-Set-DscLocalConfigurationManager -Path .\SPF -Verbose
 Start-DscConfiguration -Path .\SPF -Verbose -Wait -Force
-Test-DscConfiguration -Verbose

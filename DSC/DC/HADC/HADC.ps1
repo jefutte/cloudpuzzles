@@ -8,7 +8,7 @@ configuration HADC
 {
     Import-DscResource -ModuleName xActiveDirectory
 
-    Node $AllNodes.Where{$_.Role -eq "Primary DC"}.Nodename
+    Node $AllNodes.Where{$_.Role -eq "PDC"}.Nodename
     {
         WindowsFeature ADInstall
         {
@@ -45,7 +45,7 @@ configuration HADC
 
     }
 
-    Node $AllNodes.Where{$_.Role -eq "Replica DC"}.Nodename
+    Node $AllNodes.Where{$_.Role -eq "RDC"}.Nodename
     {
         WindowsFeature ADInstall
         {

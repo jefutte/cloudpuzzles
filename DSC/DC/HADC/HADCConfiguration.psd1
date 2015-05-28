@@ -3,7 +3,7 @@
 
         @{
             Nodename = "dc01"
-            Role = "Primary DC"
+            Role = "PDC"
             DomainName = "cloudpuzzles.net"
             PSDscAllowPlainTextPassword = $true
 	        RetryCount = 20 
@@ -12,8 +12,8 @@
 
         @{
             Nodename = "dc02"
-            Role = "Replica DC"
-            DomainName = "sva-dscdom.nttest.microsoft.com"
+            Role = "RDC"
+            DomainName = "cloudpuzzles.net"
             PSDscAllowPlainTextPassword = $true
 	        RetryCount = 20 
 	        RetryIntervalSec = 30 

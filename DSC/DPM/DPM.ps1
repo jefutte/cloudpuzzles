@@ -73,6 +73,12 @@ Configuration DPM
                     SQLSvcAccount = $Node.LocalSystemAccount
                     AgtSvcAccount = $Node.LocalSystemAccount
                     RSSvcAccount = $Node.LocalSystemAccount
+                    InstallSQLDataDir = $Node.InstallSQLDataDir
+                    SQLUserDBDir = $Node.SQLUserDBDir
+                    SQLUserDBLogDir = $Node.SQLUserDBLogDir
+                    SQLTempDBDir = $Node.SQLTempDBDir
+                    SQLTempDBLogDir = $Node.SQLTempDBLogDir
+                    SQLBackupDir = $Node.SQLBackupDir
                 }
 
                 xSqlServerFirewall ($Node.NodeName + $SQLInstanceName)

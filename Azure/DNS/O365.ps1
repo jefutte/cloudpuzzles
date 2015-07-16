@@ -1,6 +1,3 @@
-Switch-AzureMode -Name AzureResourceManager
-Add-AzureAccount
-Select-AzureSubscription -SubscriptionName "JJ"
 Register-AzureProvider -ProviderNamespace Microsoft.Network
 $zone = Get-AzureDnsZone -Name cloudpuzzles.net -ResourceGroupName JJ
 $rs = Get-AzureDnsRecordSet -Name "@" -RecordType TXT -Zone $zone

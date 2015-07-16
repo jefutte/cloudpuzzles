@@ -99,12 +99,14 @@
          "TTL": 3600,
          "SRVRecords": [
              {
+                "name": "_sip._tls",
                 "priority": 100,
                 "weight": 1,
                 "port": 443,
                 "target": "sipdir.online.lync.com"
              },
              {
+                "name": "_sipfederationtls._tcp",
                 "priority": 100,
                 "weight": 1,
                 "port": 5061,

@@ -1,5 +1,4 @@
-New-AzureDnsZone -Name cloudpuzzles.net -ResourceGroupName cloudpuzzles
-$zone = Get-AzureDnsZone -Name cloudpuzzles.net -ResourceGroupName cloudpuzzles
+$zone = New-AzureDnsZone -Name cloudpuzzles.net -ResourceGroupName cloudpuzzles
 Get-AzureDnsRecordSet –Name “@” –RecordType NS –Zone $zone
 
 $rs = New-AzureDnsRecordSet -Name "@" -RecordType A -Zone $zone -Ttl 3600
@@ -46,7 +45,7 @@ $rs = New-AzureDnsRecordSet -Name "_sipfederationtls._tcp" -RecordType SRV -Zone
 Add-AzureDnsRecordConfig -RecordSet $rs –Priority 100 –Weight 1 –Port 5061 –Target "sipfed.online.lync.com"
 Set-AzureDnsRecordSet -RecordSet $rs
 
-$rs = Get-AzureDnsRecordSet -Name "@" -RecordType MX -Zone $zone
+$rs = New-AzureDnsRecordSet -Name "@" -RecordType MX -Zone $zone -Ttl 3600
 Add-AzureDnsRecordConfig -RecordSet $rs -Exchange cloudpuzzles-net.mail.eo.outlook.com -Preference 5
 Set-AzureDnsRecordSet -RecordSet $rs
 

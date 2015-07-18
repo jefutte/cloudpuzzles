@@ -1,6 +1,18 @@
 $zone = New-AzureDnsZone -Name cloudpuzzles.net -ResourceGroupName cloudpuzzles
 Get-AzureDnsRecordSet –Name “@” –RecordType NS –Zone $zone
 
+$rs = New-AzureDnsRecordSet -Name "@" -RecordType A -Zone $zone -Ttl 3600
+Add-AzureDnsRecordConfig -RecordSet $rs -Ipv4Address 94.245.104.73
+Set-AzureDnsRecordSet -RecordSet $rs
+
+$rs = New-AzureDnsRecordSet -Name "www" -RecordType A -Zone $zone -Ttl 3600
+Add-AzureDnsRecordConfig -RecordSet $rs -Ipv4Address 94.245.104.73
+Set-AzureDnsRecordSet -RecordSet $rs
+
+$rs = Get-AzureDnsRecordSet -Name awverify -RecordType CNAME -Zone $zone
+Add-AzureDnsRecordConfig -RecordSet $rs -Cname awverify.cloudpuzzles.azurewebsites.net
+Set-AzureDnsRecordSet -RecordSet $rs
+
 $rs = New-AzureDnsRecordSet -Name "sip" -RecordType CNAME -Zone $zone -Ttl 3600
 Add-AzureDnsRecordConfig -RecordSet $rs -Cname "sipdir.online.lync.com"
 Set-AzureDnsRecordSet -RecordSet $rs

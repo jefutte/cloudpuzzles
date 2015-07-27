@@ -1,5 +1,6 @@
 $zone = New-AzureDnsZone -Name cloudpuzzles.net -ResourceGroupName cloudpuzzles
-Get-AzureDnsRecordSet –Name “@” –RecordType NS –Zone $zone
+$zone = Get-AzureDnsZone -Name cloudpuzzles.net -ResourceGroupName cloudpuzzles
+Get-AzureDnsRecordSet -Name "cloudpuzzles.net" -RecordType NS -Zone $zone
 
 $rs = New-AzureDnsRecordSet -Name "@" -RecordType A -Zone $zone -Ttl 3600
 Add-AzureDnsRecordConfig -RecordSet $rs -Ipv4Address 94.245.104.73
@@ -51,4 +52,8 @@ Set-AzureDnsRecordSet -RecordSet $rs
 
 $rs = New-AzureDnsRecordSet -Name "@" -RecordType TXT -Zone $zone -Ttl 3600
 Add-AzureDnsRecordConfig -RecordSet $rs -Value "v=spf1 include:spf.protection.outlook.com -all"
+Set-AzureDnsRecordSet -RecordSet $rs
+
+$rs = New-AzureDnsRecordSet -Name "tinfoil-site-verification" -RecordType TXT -Zone $zone -Ttl 3600
+Add-AzureDnsRecordConfig -RecordSet $rs -Value "6e73af6544da73f12522a4ef2447ac7d04e4cdc7=f2387eb767f370c248d682f8e279050f4d235384"
 Set-AzureDnsRecordSet -RecordSet $rs

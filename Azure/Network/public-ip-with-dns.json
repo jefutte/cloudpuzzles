@@ -1,0 +1,42 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "type": "String",
+      "metadata": {
+        "description": "Region where the resources will be deployed"
+      },
+      "defaultValue": "West Europe",
+      "allowedValues": [
+        "North Europe",
+        "West Europe"
+      ]
+    },
+    "gatewayPublicIPName": {
+      "type": "string",
+      "defaultValue": "demo-gatewayIP",
+      "metadata": {
+        "description": "IP name"
+      }
+    }
+  },
+  "variables": {
+    "api-version": "2015-05-01-preview"
+  },
+  "resources": [
+    {
+      "apiVersion": "2014-12-01-preview",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "name": "[parameters('gatewayPublicIPName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "publicIPAllocationMethod": "Dynamic",
+        "dnsSettings": {
+         "domainNameLabel": "cloudpuzzles",
+         "reverseFqdn": "cloudpuzzles.net"
+        }
+      }
+    }
+  ]
+}

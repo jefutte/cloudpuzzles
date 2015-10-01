@@ -57,3 +57,15 @@ Set-AzureDnsRecordSet -RecordSet $rs
 $rs = New-AzureDnsRecordSet -Name "tinfoil-site-verification" -RecordType TXT -Zone $zone -Ttl 3600
 Add-AzureDnsRecordConfig -RecordSet $rs -Value "6e73af6544da73f12522a4ef2447ac7d04e4cdc7=f2387eb767f370c248d682f8e279050f4d235384"
 Set-AzureDnsRecordSet -RecordSet $rs
+
+$rs = New-AzureDnsRecordSet -Name "test" -RecordType A -Zone $zone -Ttl 3600
+Add-AzureDnsRecordConfig -RecordSet $rs -Ipv4Address 40.74.62.167
+Set-AzureDnsRecordSet -RecordSet $rs
+
+$rs = New-AzureDnsRecordSet -Name "home" -RecordType A -Zone $zone -Ttl 3600
+Add-AzureDnsRecordConfig -RecordSet $rs -Ipv4Address 90.184.76.17
+Set-AzureDnsRecordSet -RecordSet $rs
+
+$rs = New-AzureDnsRecordSet -Name "advania" -RecordType CNAME -Zone $zone -Ttl 3600
+Add-AzureDnsRecordConfig -RecordSet $rs -Cname "site5.webabc.advania.com"
+Set-AzureDnsRecordSet -RecordSet $rs

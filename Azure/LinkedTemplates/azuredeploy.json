@@ -25,7 +25,7 @@
     },
     "variables": {
         "storageAccountName": "[concat(parameters('labName'),'jjstor01')]",
-        "storageTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/NewStorageAccount/newstorageaccount.json",
+        "storageTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/Storage/NewStorageAccount/newstorageaccount.json",
         "imagepublisher": "MicrosoftWindowsServer",
         "imageoffer": "WindowsServer",
         "imagesku": "2012-R2-Datacenter"

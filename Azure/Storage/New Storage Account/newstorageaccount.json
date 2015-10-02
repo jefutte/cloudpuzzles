@@ -2,9 +2,17 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-		"labname": {
+		"location": {
 			"type": "string",
-			"defaultValue": "lab01"
+			"defaultValue": "West Europe",
+			"allowedValues": [
+				"West Europe",
+				"North Europe"	
+			]
+		},
+		"storageAccountName": {
+			"type": "string",
+			"defaultValue": "stor01"
 		},
 		"storageAccountType": {
 			"type": "string",
@@ -13,18 +21,7 @@
 				"Standard_LRS",
 				"Premium_LRS"
 			]
-		},
-		"location":{
-			"type": "string",
-			"defaultValue": "West Europe",
-			"allowedValues": [
-				"West Europe",
-				"North Europe"	
-			]
 		}
-	},
-	"variables": {
-		"storageAccountName": "[concat(parameters('labName'),stor01)]"
 	},
 	"resources": [
 		{

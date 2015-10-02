@@ -37,6 +37,9 @@
                     "location": {
                         "value": "[parameters('location')]"
                     },
+                    "storageAccountName": {
+                        "value": "[variables('storageAccountName')]"
+                    },
                     "storageAccountType": {
                         "value": "[parameters('storageAccountType')]"
                     }

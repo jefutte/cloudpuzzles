@@ -1,0 +1,37 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+		"labname": {
+			"type": "string",
+			"defaultValue": "lab01"
+		},
+		"storageAccountType": {
+			"type": "string",
+			"defaultValue": "Standard_LRS",
+			"allowedValues": [
+				"Standard_LRS",
+				"Premium_LRS"
+			]
+		},
+		"location":{
+			"type": "string",
+			"defaultValue": "West Europe"
+			
+		}
+	},
+	"variables": {
+		"storageAccountName": "[concat(parameters('labName'),stor01)]"
+	},
+	"resources": [
+		{
+			"type": "Microsoft.Storage/storageAccounts",
+			"name": "[variables('storageAccountName')]",
+			"apiVersion": "2015-05-01-preview",
+			"location": "[parameters('location')]",
+			"properties": {
+				"accountType": "[parameters('storageAccountType')]"
+			}
+		}	
+	]
+}

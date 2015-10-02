@@ -17,6 +17,10 @@
 			"type": "string",
 			"defaultValue": "labvnet01"	
 		},
+		"subnetName":{
+			"type": "string",
+			"defaultValue": "internal"
+		},
 		"addressSpacePrefix": {
 				"type": "string",
 				"defaultValue": "10.0.0.0/22",
@@ -46,7 +50,7 @@
 				},
 				"subnets": [
 					{
-						"name": "internal",
+						"name": "[parameters('subnetName')]",
 						"properties": {
 							"addressPrefix": "[parameters('subnetPrefix')]"
 						}

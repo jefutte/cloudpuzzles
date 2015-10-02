@@ -104,7 +104,7 @@
                         "value": "[parameters('addressSpacePrefix')]"
                     },
                     "subnetPrefix": {
-                        "value": "[parameters('subnetPrefix')"
+                        "value": "[parameters('subnetPrefix')]"
                     }
                 }
             }

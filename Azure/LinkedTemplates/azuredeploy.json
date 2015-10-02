@@ -47,6 +47,7 @@
     },
     "variables": {
         "storageAccountName": "[concat(parameters('labName'),'jjstor01')]",
+        "networkName": "[concat(parameters('labName'),'vnet')]",
         "storageTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/Storage/NewStorageAccount/newstorageaccount.json",
         "networkTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/Network/newvirtualnetwork.json",
         "imagepublisher": "MicrosoftWindowsServer",

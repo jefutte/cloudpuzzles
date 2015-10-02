@@ -11,8 +11,7 @@
 			]
 		},
 		"storageAccountName": {
-			"type": "string",
-			"defaultValue": "stor01"
+			"type": "string"
 		},
 		"storageAccountType": {
 			"type": "string",

@@ -24,6 +24,7 @@
         }
     },
     "variables": {
+        "storageAccountName": "[concat(parameters('labName'),'jjstor01')]",
         "storageTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/NewStorageAccount/newstorageaccount.json",
         "imagepublisher": "MicrosoftWindowsServer",
         "imageoffer": "WindowsServer",
@@ -43,6 +44,9 @@
                 "parameters": {
                     "location": {
                         "value": "[parameters('location')]"
+                    },
+                    "storageAccountName": {
+                        "value": "[variables('storageAccountName')]"
                     },
                     "storageAccountType": {
                         "value": "[parameters('storageAccountType')]"

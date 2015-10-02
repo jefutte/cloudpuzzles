@@ -2,133 +2,44 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "labName": {
+          "type": "string",
+          "defaultValue": "lab01"  
+        },
         "location": {
-        "type": "String",
-        "metadata": {
-            "description": "Region where the resources will be deployed"
-        },
-        "defaultValue": "West Europe",
-        "allowedValues": [
-            "North Europe",
-            "West Europe"
-        ]
-        },
-        "vpnType": {
-        "type": "String",
-        "metadata": {
-            "description": "Dynamic or static"
-        },
-        "defaultValue": "Dynamic",
-        "allowedValues": [
-            "Dynamic",
-            "Static"
-        ]
-        },
-        "localGatewayName": {
-        "type": "string",
-        "defaultValue": "localgw2",
-        "metadata": {
-            "description": "Local gateway name"
-        }
-        },
-        "localGatewayIpAddress": {
-        "type": "string",
-        "defaultValue": "40.113.127.53",
-        "metadata": {
-            "description": "Public IP of your VPN device"
-        }
-        },
-        "localAddressPrefix": {
-        "type": "string",
-        "defaultValue": "172.16.0.0/16",
-        "metadata": {
-            "description": "Local network CIDR"
-        }
-        },
-        "virtualNetworkName": {
-        "type": "string",
-        "defaultValue": "demo-vnet",
-        "metadata": {
-            "description": "VNet name"
-        }
-        },
-        "azureVNetAddressPrefix": {
-        "type": "string",
-        "defaultValue": "10.0.0.0/16",
-        "metadata": {
-            "description": "Address space CIDR"
-        }
-        },
-        "subnetName": {
-        "type": "string",
-        "defaultValue": "demo-subnet",
-        "metadata": {
-            "description": "Subnet name"
-        }
-        },
-        "subnetPrefix": {
-        "type": "string",
-        "defaultValue": "10.0.0.0/24",
-        "metadata": {
-            "description": "VM subnet CIDR"
-        }
-        },
-        "gatewaySubnetPrefix": {
-        "type": "string",
-        "defaultValue": "10.0.254.0/29",
-        "metadata": {
-            "description": "Gateway subnet, at least a /29"
-        }
-        },
-        "gatewayPublicIPName": {
-        "type": "string",
-        "defaultValue": "demo-gatewayIP",
-        "metadata": {
-            "description": "IP name"
-        }
-        },
-        "gatewayName": {
-        "type": "string",
-        "defaultValue": "demo-gateway",
-        "metadata": {
-            "description": "Gateway name"
-        }
-        },
-        "connectionName": {
-        "type": "string",
-        "defaultValue": "demo-connection",
-        "metadata": {
-            "description": "Name of the connection between the 2 sites, eg: Local-Azure"
-        }
-        },
-        "sharedKey": {
-        "type": "string",
-        "defaultValue": "demo",
-        "metadata": {
-            "description": "Shared key"
-        }
+            "type": "string",
+            "defaultValue": "West Europe",
+            "allowedValues": [
+                "West Europe",
+                "North Europe"
+            ]
         }
     },
     "variables": {
-        "vnetTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/Network/vnet-with-gateway.json",
+        "storageAccountName": "[concat(parameters('labName'),stor01)]",
+        "storageTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/Storage/New%20Storage%20Account/newstorageaccount.json",
         "imagepublisher": "MicrosoftWindowsServer",
         "imageoffer": "WindowsServer",
         "imagesku": "2012-R2-Datacenter"
     },
     "resources": [
         {
-            "apiVersion": "2015-01-01",
+            "apiVersion": "2015-05-01-preview",
             "type": "Microsoft.Resources/deployments",
-            "name": "[parameters('virtualNetworkName')]",
+            "name": "[variables('storageAccountName')]",
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[variables('vnetTemplate')]",
+                    "uri": "[variables('storageTemplate')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                    "something1": { "value": "[parameters('parameter1')]" },
-                    "something2": { "value": "[parameters('parameter2')]" }
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "storageAccountType": {
+                        "value": "[parameters('storageAccountType')]"
+                    }
                 }
             }
         }

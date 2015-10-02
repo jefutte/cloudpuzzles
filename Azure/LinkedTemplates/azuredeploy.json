@@ -24,8 +24,7 @@
         }
     },
     "variables": {
-        "storageAccountName": "jjwaplrsstorage",
-        "storageTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/Storage/New%20Storage%20Account/newstorageaccount.json",
+        "storageTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/NewStorageAccount/newstorageaccount.json",
         "imagepublisher": "MicrosoftWindowsServer",
         "imageoffer": "WindowsServer",
         "imagesku": "2012-R2-Datacenter"
@@ -44,9 +43,6 @@
                 "parameters": {
                     "location": {
                         "value": "[parameters('location')]"
-                    },
-                    "storageAccountName": {
-                        "value": "[variables('storageAccountName')]"
                     },
                     "storageAccountType": {
                         "value": "[parameters('storageAccountType')]"

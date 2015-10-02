@@ -16,8 +16,11 @@
 		},
 		"location":{
 			"type": "string",
-			"defaultValue": "West Europe"
-			
+			"defaultValue": "West Europe",
+			"allowedValues": [
+				"West Europe",
+				"North Europe"	
+			]
 		}
 	},
 	"variables": {

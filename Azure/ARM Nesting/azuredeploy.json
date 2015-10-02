@@ -13,6 +13,14 @@
                 "West Europe",
                 "North Europe"
             ]
+        },
+        "storageAccountType": {
+            "type": "string",
+            "defaultValue": "Standard_LRS",
+            "allowedValues": [
+                "Standard_LRS",
+                "Premium_LRS"
+            ]
         }
     },
     "variables": {

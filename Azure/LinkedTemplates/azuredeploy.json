@@ -24,7 +24,7 @@
         }
     },
     "variables": {
-        "storageAccountName": "[concat(parameters('labName'),stor01)]",
+        "storageAccountName": "[concat(parameters('labName'),'stor01')]",
         "storageTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/Storage/New%20Storage%20Account/newstorageaccount.json",
         "imagepublisher": "MicrosoftWindowsServer",
         "imageoffer": "WindowsServer",

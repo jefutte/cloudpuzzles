@@ -1,0 +1,58 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+		"location": {
+			"type": "string",
+			"defaultValue": "West Europe",
+			"allowedValues": [
+				"West Europe",
+				"North Europe"	
+			],
+			"metadata": {
+				"description": "Network Location, example: West Europe"
+			}
+		},
+		"virtualNetworkName": {
+			"type": "string",
+			"defaultValue": "labvnet01"	
+		},
+		"addressSpacePrefix": {
+				"type": "string",
+				"defaultValue": "10.0.0.0/22",
+				"metadata": {
+					"description": "Address Space Prefix, example: 10.0.0.0/22"
+				}
+		},
+		"subnetPrefix":{
+			"type": "string",
+			"defaultValue": "10.0.0.0/24",
+			"metadata": {
+				"description": "Subnet Prefix, example: 10.0.0.0/24"
+			}
+		}
+	},
+	"resources": [
+		{
+			"type": "Microsoft.Storage/virtualNetworks",
+			"name": "[parameters('virtualNetworkName')]",
+			"apiVersion": "2015-05-01-preview",
+			"location": "[parameters('location')]",
+			"properties": {
+				"addressSpace": {
+					"addressPrefixes": [
+						"[parameters('addressSpacePrefix')]"
+					]
+				},
+				"subnets": [
+					{
+						"name": "internal",
+						"properties": {
+							"addressPrefix": "[parameters('subnetPrefix')]"
+						}
+					}
+				]
+			}
+		}	
+	]
+}

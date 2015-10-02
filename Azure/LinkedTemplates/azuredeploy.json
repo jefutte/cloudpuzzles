@@ -22,14 +22,6 @@
                 "Premium_LRS"
             ]
         },
-		"virtualNetworkName": {
-			"type": "string",
-			"defaultValue": "labvnet01"	
-		},
-        "subnetName": {
-            "type": "string",
-            "defaultValue": "internal"
-        },
 		"addressSpacePrefix": {
 				"type": "string",
 				"defaultValue": "10.0.0.0/22",
@@ -47,7 +39,8 @@
     },
     "variables": {
         "storageAccountName": "[concat(parameters('labName'),'jjstor01')]",
-        "networkName": "[concat(parameters('labName'),'vnet')]",
+        "virtualNetworkName": "[concat(parameters('labName'),'vnet')]",
+        "subnetName": "[concat(parameters('labName'),'subnet')]",
         "storageTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/Storage/NewStorageAccount/newstorageaccount.json",
         "networkTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/Network/newvirtualnetwork.json",
         "imagepublisher": "MicrosoftWindowsServer",
@@ -96,7 +89,7 @@
                         "value": "[variables('networkName')]"
                     },
                     "subnetName": {
-                        "value": "[parameters('subnetName')]"
+                        "value": "[variables('subnetName')]"
                     },
                     "addressSpacePrefix": {
                         "value": "[parameters('addressSpacePrefix')]"

@@ -1,0 +1,24 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "subnetPrefix": {
+      "type": "string",
+      "metadata": {
+        "description": "Full subnet CIDR, example: 10.0.0.0/24"
+      }
+    }
+  },
+  "variables": {
+    "subnetSplit": "[split('10.0.0.0/24', '/')]",
+    "ipSplit": "[split(variables('subnetSplit',0), '.')]",
+    "dnsIPCalc": "[add(variables('ipSplit',3), '4')]",
+    "dnsIP": "[concat(variables('ipSplit',0), '.', variables('ipSplit',1), '.', variables('ipSplit',2), '.', variables('dnsIPCalc'))]"
+  },
+  "outputs": { 
+    "ipAddress": { 
+      "value":  "[variables('dnsIP')]", 
+      "type":"string" 
+    }
+  }
+}

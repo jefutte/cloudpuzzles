@@ -56,7 +56,7 @@
         "nicTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/Network/NewNIC/newnic.json",
         "pADIPName": "[concat(parameters('labName'),'pADIP')]",
         "bADIPName": "[concat(parameters('labName'),'bADIP')]",
-        "vnetId": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+        "vnetId": "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
         "subnetId": "[concat(variables('VnetID'),'/subnets/',variables('subnetName'))]",
         "imagepublisher": "MicrosoftWindowsServer",
         "imageoffer": "WindowsServer",

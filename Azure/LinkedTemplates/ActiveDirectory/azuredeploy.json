@@ -51,7 +51,7 @@
         "virtualNetworkName": "[concat(parameters('labName'),'vnet')]",
         "subnetName": "[concat(parameters('labName'),'subnet')]",
         "storageTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/Storage/NewStorageAccount/newstorageaccount.json",
-        "networkTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/Network/newvirtualnetwork.json",
+        "networkTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/Network/NewVirtualNetwork/newvirtualnetwork.json",
         "imagepublisher": "MicrosoftWindowsServer",
         "imageoffer": "WindowsServer",
         "imagesku": "2012-R2-Datacenter"

@@ -51,7 +51,7 @@
         "virtualNetworkName": "[concat(parameters('labName'),'vnet')]",
         "subnetName": "[concat(parameters('labName'),'subnet')]",
         "subnetSplit": "[split(parameters('subnetPrefix'), '/')]",
-        "ipSplit": "[split(variables('subnetSplit')0, '.')]",
+        "ipSplit": "[split('10.0.0.0', '.')]",
         "dnsIPCalc": "[add(variables('ipSplit',3), parameters('ipCount'))]",
         "dnsIP": "[concat(variables('ipSplit',0), '.', variables('ipSplit',1), '.', variables('ipSplit',2), '.', variables('dnsIPCalc'))]",
         "storageTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/Storage/NewStorageAccount/newstorageaccount.json",

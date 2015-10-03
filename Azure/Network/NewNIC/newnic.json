@@ -1,0 +1,60 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+		"location": {
+			"type": "string",
+			"defaultValue": "West Europe",
+			"allowedValues": [
+				"West Europe",
+				"North Europe"
+			],
+			"metadata": {
+				"description": "Deployment location"
+			}
+		},
+		"pADNicName": {
+			"type": "string",
+			"metadata": {
+				"description": "Name of Primary DC IP"
+			}
+		},
+		"pADIP": {
+			"type": "string",
+			"metadata": {
+				"description": "IP for Primary DC"
+			}
+		},
+		"subnetId": {
+			"type": "string",
+			"metadata": {
+				"description": "Subnet ID"
+			}
+		}
+	},
+	"variables": {
+		
+	},
+	"resources": [
+		{
+			"apiVersion": "2015-05-01-preview",
+			"name": "[parameters('pADNicName')]",
+			"type": "Microsoft.Network/networkInterfaces",
+			"location": "[parameters('location')]",
+			"properties": {
+				"ipConfigurations": [
+					{
+						"name": "[parameters('pADNicName')]",
+						"properties": {
+							"privateIPAllocationMethod": "Static",
+							"privateIPAddress": "[parameters('pADIP')]",
+							"subnet": {
+								"id": "[parameters('subnetId')]"
+							}
+						}
+					}
+				]
+			}
+		}
+	]
+}

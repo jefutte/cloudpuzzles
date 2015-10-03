@@ -7,12 +7,18 @@
       "metadata": {
         "description": "Full subnet CIDR, example: 10.0.0.0/24"
       }
+    },
+    "ipCount": {
+      "type": "int",
+      "metadata": {
+        "description": "IP count, example: 4"
+      }
     }
   },
   "variables": {
     "subnetSplit": "[split(parameters('subnetPrefix'), '/')]",
     "ipSplit": "[split(variables('subnetSplit',0), '.')]",
-    "dnsIPCalc": "[add(variables('ipSplit',3), '4')]",
+    "dnsIPCalc": "[add(variables('ipSplit',3), parameters('ipCount'))]",
     "dnsIP": "[concat(variables('ipSplit',0), '.', variables('ipSplit',1), '.', variables('ipSplit',2), '.', variables('dnsIPCalc'))]"
   },
   "outputs": { 

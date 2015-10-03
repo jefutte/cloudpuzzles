@@ -1,0 +1,134 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+		"location": {
+			"type": "string",
+			"defaultValue": "West Europe",
+			"allowedValues": [
+				"West Europe",
+				"North Europe"
+			],
+			"metadata": {
+				"description": "Location to deploy resources in"
+			}
+		},
+		"storageAccountName": {
+			"type": "string",
+			"metadata": {
+				"description": "Storage account name"
+			}
+		},
+		"adminUserName": {
+			"type": "string",
+			"metadata": {
+				"description": "Administrator username"
+			}
+		},
+		"adminPassword": {
+			"type": "securestring",
+			"metadata": {
+				"description": "Password for administrator account"
+			}
+		},
+		"imagePublisher": {
+			"type": "string",
+			"defaultValue": "MicrosoftWindowsServer",
+			"metadata": {
+				"description": "Publisher of OS image, example: MicrosoftWindowsServer"
+			}
+		},
+		"imageOffer": {
+			"type": "string",
+			"defaultValue": "WindowsServer",
+			"metadata": {
+				"description": "Image to use, example: WindowsServer"
+			}
+		},
+		"imageSKU": {
+			"type": "string",
+			"defaultValue": "2012-R2-Datacenter",
+			"metadata": {
+				"description": "Image SKU, example: 2012-R2-Datacenter"
+			}
+		},
+		"pADVMNicId": {
+			"type": "string",
+			"metadata": {
+				"Description": "ID of NIC for Primary AD VM"
+			}
+		},
+		"bADVMNicId": {
+			"type": "string",
+			"metadata": {
+				"Description": "ID of NIC for secondary AD VM"
+			}
+		}
+	},
+	"variables": {
+		"pADVMName": "dsafa",
+		"pADVMNicName": "asda",
+		"adAvailabilitySetName": "asdas"
+	},
+	"resources": [
+		{
+			"apiVersion": "2015-05--01-preview",
+			"type": "Microsoft.Compute/virtualMachines",
+			"name": "[variables('pADVMName')]",
+			"location": "[parameters('location')]",
+			"dependsOn": [
+				"[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
+				"[resourceId('Microsoft.Network/networkInterfaces', variables('pADVMNicName'))]",
+				"[resourceId('Microsoft.Compute/availabilitySets', variables('adAvailabilitySetName'))]"
+			],
+			"properties": {
+				"hardwareProfile": {
+					"vmSize": "[variables('adVMSize')]"
+				},
+				"availabilitySet": {
+					"id": "[resourceId('Microsoft.Compute/availabilitySets', variables('adAvailabilitySetName')"
+				},
+				"osProfile": {
+					"computerName": "[variables('pADVMName')]",
+					"adminUsername": "[parameters('adminUserName')]",
+					"adminPassword": "[parameters('adminPassword')]"
+				},
+				"storageProfile": {
+					"imageReference": {
+						"publisher": "[parameters('imagePublisher')]",
+						"offer": "[parameters('imageOffer')]",
+						"sku": "[parameters('imageSKU')]",
+						"version": "latest"
+					},
+					"osDisk": {
+						"name": "osdisk",
+						"vhd": {
+							"uri": "[concat('http://',parameters('storageAccountName'),'.blob.core.windows.net/',variables('pADVMName'),'osdiosk.vhd')]"
+						},
+						"caching": "ReadWrite",
+						"createOption": "FromImage"
+					},
+					"dataDisks": [
+						{
+							"name": "datadisk1",
+							"vhd": {
+								"uri": "[concat('http://',parameters('storageAccountName'),'.blob.core.windows.net/',variables('pADVMName'),'datadisk1.vhd')]"
+							},
+							"caching": "None",
+							"diskSizeGB": "10",
+							"lun": "0",
+							"createOption": "empty"
+						}
+					]
+				},
+				"networkProfile": {
+					"networkInterfaces": [
+						{
+							"id": "[parameters('pADVMNicId')]"
+						}
+					]
+				}
+			}
+		}
+	]
+}

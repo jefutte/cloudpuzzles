@@ -52,6 +52,12 @@
         "subnetName": "[concat(parameters('labName'),'subnet')]",
         "storageTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/Storage/NewStorageAccount/newstorageaccount.json",
         "networkTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/Network/NewVirtualNetwork/newvirtualnetwork.json",
+        "ipCalcTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/Network/IPCalc/ipcalc.json",
+        "nicTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/Network/NewNIC/newnic.json",
+        "pADIPName": "[concat('parameters('labName'),'pADIP')]",
+        "bADIPName": "[concat('parameters('labName'),'bADIP')]",
+        "vnetId": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+        "subnetId": "[concat(variables('VnetID'),'/subnets/',variables('subnetName'))]",
         "imagepublisher": "MicrosoftWindowsServer",
         "imageoffer": "WindowsServer",
         "imagesku": "2012-R2-Datacenter"
@@ -84,7 +90,7 @@
             "apiVersion": "2015-01-01",
             "type": "Microsoft.Resources/deployments",
             "name": "[variables('virtualNetworkName')]",
-            "properties":{
+            "properties": {
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[variables('networkTemplate')]",
@@ -107,6 +113,46 @@
                         "value": "[parameters('subnetPrefix')]"
                     }
                 }
+            }
+        },
+        {
+            "apiVersion": "2015-01-01",
+            "type": "Microsoft.Resources/deployments",
+            "name": "[variables('pADIPName')]",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('ipCalcTemplate')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "subnetPrefix": "[parameters('subnetPrefix')]",
+                    "ipCount": "4"
+                },
+                "dependsOn": [
+                    "[concat('Microsoft.Network/virtualNetworks/',variables('virtualNetworkName')]"
+                ]
+            }
+        },
+        {
+            "apiVersion": "2015-01-01",
+            "type": "Microsoft.Resources/deployments",
+            "name": "[variables('pADNicName')",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('nicTemplate')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "pADNicName": "[variables('pADNicName')",
+                    "location": "[parameters('location')]",
+                    "pADIP": "[reference(variables('pADIPName')).outputs.ipAddress.value]",
+                    "subnetId": "[variables('subnetId')]"
+                },
+                "dependsOn": [
+                    "[concat('Microsoft.Storage/storageAccounts/',variables('storageAccountName')]"
+                ]
             }
         }
     ]

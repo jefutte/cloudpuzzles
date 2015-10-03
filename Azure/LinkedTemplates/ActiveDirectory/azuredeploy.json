@@ -128,10 +128,7 @@
                 "parameters": {
                     "subnetPrefix": "[parameters('subnetPrefix')]",
                     "ipCount": "4"
-                },
-                "dependsOn": [
-                    "[concat('Microsoft.Network/virtualNetworks/',variables('virtualNetworkName')]"
-                ]
+                }
             }
         },
         {
@@ -149,10 +146,7 @@
                     "location": "[parameters('location')]",
                     "pADIP": "[reference(variables('pADIPName')).outputs.ipAddress.value]",
                     "subnetId": "[variables('subnetId')]"
-                },
-                "dependsOn": [
-                    "[concat('Microsoft.Storage/storageAccounts/',variables('storageAccountName')]"
-                ]
+                }
             }
         }
     ]

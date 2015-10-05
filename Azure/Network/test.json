@@ -16,7 +16,8 @@
 	],
 	"outputs": {
 		"ip": {
-			"value": "[variables('endIP')]"
+			"value": "[variables('endIP')]",
+			"type": "int"
 		}
 	}
 }

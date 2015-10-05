@@ -14,6 +14,7 @@
 		"endIP": "[int('4')]"
 		
 	},
+	"resources": [],
 	"outputs": {
 		"ip": {
 			"value": "[variables('endIP')]",

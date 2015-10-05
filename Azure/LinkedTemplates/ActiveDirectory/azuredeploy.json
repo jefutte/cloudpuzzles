@@ -54,7 +54,7 @@
         "ipSplit": "[split(variables('subnetSplit')[0], '.')]",
         "ipInt": "[int(variables('ipSplit')[3])]",
         "endIP": "[int('4')]",
-        "dnsIP": "[concat(variables('ipSplit')[0], '.', variables('ipSplit')[1], '.', variables('ipSplit')[2], '.', add(variables('ipSplit')[3], '4'))]",
+        "dnsIP": "[concat(variables('ipSplit')[0], '.', variables('ipSplit')[1], '.', variables('ipSplit')[2], '.', add(int(variables('ipSplit')[3]), '4'))]",
         "storageTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/Storage/NewStorageAccount/newstorageaccount.json",
         "networkTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/Network/NewVirtualNetwork/newvirtualnetwork.json",
         "ipCalcTemplate": "https://raw.githubusercontent.com/jefutte/cloudpuzzles/master/Azure/Network/IPCalc/ipcalc.json",

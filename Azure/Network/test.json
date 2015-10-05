@@ -1,19 +1,22 @@
-
-"subnetSplit": "[split('10.0.0.0/24', '/')]"
-"ipSplit": "[split(variables('subnetSplit',0), '.')]"
-"dnsIPCalc": "[add(variables('ipSplit',3), '4')]"
-"dnsIP": "[concat(variables('ipSplit',0), '.', variables('ipSplit',1), '.', variables('ipSplit',2), '.', variables('dnsIPCalc'))]"
-
-
-
-"outputs": { 
-	"masterip": { 
-		"value":  "[reference(concat(variables('nicName'),0)).ipConfigurations[0].properties.privateIPAddress]", 
-		"type":"string" 
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+		
+	},
+	"variables": {
+		"subnetSplit": "[split('10.0.0.0/24'), '/')]",
+		"ipSplit": "[split(variables('subnetSplit')[0], '.')]",
+		"ipInt": "[int(variables('ipSplit')[3])]",
+		"endIP": "[int('4')]"
+		
+	},
+	"resources": [
+			
+	],
+	"outputs": {
+		"ip": {
+			"value": "[variables('endIP')]"
+		}
 	}
 }
-
-
-"masterIpAddress": {
-	 "value": "[reference('master-node').outputs.masterip.value]"  
-}   

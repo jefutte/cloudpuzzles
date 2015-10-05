@@ -8,7 +8,7 @@
 		}
 	},
 	"variables": {
-		"subnetSplit": "[split(variables('subnet'), '/')]",
+		"subnetSplit": "[split(parameters('subnet'), '/')]",
 		"ipSplit": "[split(variables('subnetSplit')[0], '.')]",
 		"ipInt": "[int(variables('ipSplit')[3])]",
 		"endIP": "[int('4')]"

@@ -1,0 +1,11 @@
+{
+  "if": {
+    "not" : {
+      "field" : "tags",
+      "containsKey" : "name"
+    }
+  },
+  "then" : {
+    "effect" : "deny"
+  }
+}

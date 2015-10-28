@@ -1,0 +1,11 @@
+{
+  "if" : {
+    "not" : {
+      "field" : "name",
+      "like" : "namePrefix*nameSuffix"
+    }
+  },
+  "then" : {
+    "effect" : "deny"
+  }
+}

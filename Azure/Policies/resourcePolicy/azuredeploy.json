@@ -1,0 +1,19 @@
+{
+  "if" : {
+    "not" : {
+      "anyOf" : [
+        {
+          "source" : "action",
+          "like" : "Microsoft.Compute/*"
+        },
+        {
+          "source" : "action",
+          "like" : "Microsoft.Storage/*"
+        }
+      ]
+    }
+  },
+  "then" : {
+    "effect" : "deny"
+  }
+}

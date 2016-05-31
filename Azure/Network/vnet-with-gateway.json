@@ -16,12 +16,12 @@
     "vpnType": {
       "type": "String",
       "metadata": {
-        "description": "Dynamic or static"
+        "description": "RouteBased or PolicyBased"
       },
-      "defaultValue": "Dynamic",
+      "defaultValue": "RouteBased",
       "allowedValues": [
-        "Dynamic",
-        "Static"
+        "RouteBased",
+        "PolicyBased"
       ]
     },
     "localGatewayName": {
